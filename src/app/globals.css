@@ -1,6 +1,10 @@
 /* globals.css */
 
 /* Basic resets and typography */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
