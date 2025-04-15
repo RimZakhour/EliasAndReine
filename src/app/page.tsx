@@ -10,7 +10,7 @@ export default function Home() {
   const [isStarted, setIsStarted] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const videos = ["/assets/background-video1.mp4"];
-  let lastIndex = -1;
+  // let lastIndex = -1;
  // Countdown state
  const [timeLeft, setTimeLeft] = useState({
   days: 0, hours: 0, minutes: 0, seconds: 0
