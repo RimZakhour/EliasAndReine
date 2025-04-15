@@ -3,7 +3,7 @@
 import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "@formspree/react";
-import { TrashIcon } from '@heroicons/react/24/outline'
+
 interface Guest {
   name: string;
 }
@@ -363,8 +363,8 @@ if (state.succeeded) {
 
     <form onSubmit={handleSubmit} className="space-y-8">
       {/* Accept / Decline */}
-      <div className="flex justify-center gap-6">
-        {["accept", "decline"].map((opt) => {
+      <div className="flex justify-between w-[300px] mx-auto">
+      {["accept", "decline"].map((opt) => {
           const isAccept = opt === "accept";
           const selected = attendance === opt;
           return (
@@ -389,41 +389,46 @@ if (state.succeeded) {
                 {selected ? "♥" : "♡"}
               </span>
               <span>
-                {isAccept ? "Joyfully Accept" : "Regretfully Decline"}
+                {isAccept ? "Joyfully Accept" : "Respectfully Decline"}
               </span>
             </label>
           );
         })}
       </div>
+      <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
 
-      {/* Names Inputs */}
       <div className="space-y-4">
   {guests.map((g, i) => (
     <div
       key={i}
-      className="flex items-center justify-center w-1/2 mx-auto space-x-2"
+      className="flex items-center justify-center w-2/3 mx-auto gap-3"
     >
       <input
         type="text"
         name={`guest-${i + 1}`}
         value={g.name}
         onChange={(e) => updateGuestName(i, e.target.value)}
-        placeholder={i === 0 ? 'Your Name' : `Guest ${i + 1} Name`}
-        className="flex-1 border-2 border-black rounded-md p-2 placeholder-black/60 focus:outline-none focus:border-black"
+        placeholder={i === 0 ? "Your Name" : `Guest ${i + 1} Name`}
+        className="w-full border-2 border-black rounded-full p-4 text-lg placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold bg-white shadow-md"
         required
       />
       {i > 0 && (
         <button
           type="button"
           onClick={() => removeGuest(i)}
-          className="p-2 rounded hover:bg-red-100 transition"
+          className="p-2 rounded-full hover:bg-red-100 transition"
         >
-          <TrashIcon className="h-5 w-5 text-gray-600 hover:text-red-600" />
+<svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.99997 8H6.5M6.5 8V18C6.5 19.1046 7.39543 20 8.5 20H15.5C16.6046 20 17.5 19.1046 17.5 18V8M6.5 8H17.5M17.5 8H19M9 5H15M9.99997 11.5V16.5M14 11.5V16.5" stroke="#464455" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       )}
     </div>
+    
+    
   ))}
+  
 </div>
+<div className="flex justify-between w-[300px] mx-auto"><p></p></div>
+
 
       {/* Add Person */}
       <div className="text-center">
@@ -435,26 +440,45 @@ if (state.succeeded) {
           + Add Person
         </button>
       </div>
+      <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
+
 
       {/* Submit */}
-      <div className="text-center w-1/2 mx-auto space-y-4">
+      <div className="text-center w-2/3 mx-auto space-y-4">
+  <button 
+    type="submit"
+    disabled={state.submitting}
+    className="w-full border-2 border-black rounded-full py-4 text-lg font-serif bg-white hover:bg-black hover:text-white transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+  >
+    {state.submitting ? "Sending…" : "Submit RSVP"}
+  </button>
+</div>
 
-      <button 
-        type="submit"
-        disabled={state.submitting}
-        className="w-full border-2 border-black rounded-md py-3 text-center hover:bg-black hover:text-white transition disabled:opacity-50 disabled:cursor-not-allowed"
-      >
-        {state.submitting ? "Sending…" : "Submit"}
-      </button>
-      </div>
     </form>
   </div>
 </section>
 
         <footer className="animated-section">
           <p>Made with love 💕 by the couple</p>
+          <div className="bg-white border-2 border-dashed border-pink-300 rounded-xl shadow-md p-6 text-center w-2/3 mx-auto">
+  <h3 className="text-xl font-script text-pink-700 mb-4">💕 Wedding Trivia 💕</h3>
+  <p className="font-serif text-black mb-5">What flower symbolizes eternal love?</p>
+  <div className="flex  justify-between w-[300px]">
+    {["Rose", "Tulip", "Daisy", "Sunflower"].map((option) => (
+      <button
+        key={option}
+        onClick={() => alert(option === "Rose" ? "💖 Correct! 💖" : "Try again!")}
+        className="px-4 py-2 bg-pink-100 border border-pink-300 rounded-full hover:bg-pink-200 transition"
+      >
+        {option}
+      </button>
+    ))}
+  </div>
+</div>
         </footer>
+        
       </div>
+      
 
       <div className="floating-hearts-container" ref={heartContainerRef}></div>
     </>
