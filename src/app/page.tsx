@@ -42,7 +42,7 @@ export default function Home() {
   }, [isMuted]);
 
   useEffect(() => {
-    let debounceTimer: number;
+    // let debounceTimer: number;
     const handleStart = () => {
       // 1) scroll back to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
