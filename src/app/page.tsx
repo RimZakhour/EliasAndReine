@@ -36,7 +36,7 @@ export default function Home() {
           </svg>
           <h2 className="text-2xl font-script text-gray-800 mb-2">Thank You!</h2>
           <p className="text-gray-600 font-serif">
-            Your RSVP has been received. We can't wait to celebrate with you!
+            Your RSVP has been received. We can not wait to celebrate with you!
           </p>
         </div>
       </div>
