@@ -59,31 +59,31 @@ export default function Home() {
 
     startBtnRef.current?.addEventListener("click", handleStart);
 
-    const handleScroll = () => {
-      // 2) Clear the previous timer
-      clearTimeout(debounceTimer);
+    // const handleScroll = () => {
+    //   // 2) Clear the previous timer
+    //   clearTimeout(debounceTimer);
   
-      // 3) Schedule a new one
-      debounceTimer = window.setTimeout(() => {
-        if (videoRef.current) {
-          const scrollY = window.scrollY;
-          const sectionIndex = Math.floor(scrollY / window.innerHeight);
-          const safeIndex = Math.min(sectionIndex, videos.length - 1);
-          if (safeIndex !== lastIndex) {
-            videoRef.current.pause();
-            videoRef.current.src = videos[safeIndex];
-            videoRef.current.load();
-            videoRef.current.oncanplay = () =>
-              videoRef.current
-                ?.play()
-                .catch((err) => console.error("Video play error:", err));
-            lastIndex = safeIndex;
-          }
-        }
-      }, 100);
-    };
+    //   // 3) Schedule a new one
+    //   debounceTimer = window.setTimeout(() => {
+    //     if (videoRef.current) {
+    //       const scrollY = window.scrollY;
+    //       const sectionIndex = Math.floor(scrollY / window.innerHeight);
+    //       const safeIndex = Math.min(sectionIndex, videos.length - 1);
+    //       if (safeIndex !== lastIndex) {
+    //         videoRef.current.pause();
+    //         videoRef.current.src = videos[safeIndex];
+    //         videoRef.current.load();
+    //         videoRef.current.oncanplay = () =>
+    //           videoRef.current
+    //             ?.play()
+    //             .catch((err) => console.error("Video play error:", err));
+    //         lastIndex = safeIndex;
+    //       }
+    //     }
+    //   }, 100);
+    // };
 
-    window.addEventListener("scroll", handleScroll);
+    // window.addEventListener("scroll", handleScroll);
 
     const createHeart = () => {
       const heart = document.createElement("div");
@@ -102,8 +102,8 @@ export default function Home() {
 
     return () => {
       startBtnRef.current?.removeEventListener("click", handleStart);
-      window.removeEventListener("scroll", handleScroll);
-      clearInterval(debounceTimer);
+      // window.removeEventListener("scroll", handleScroll);
+      clearInterval(intervalId);
     };
   }, []);
 
