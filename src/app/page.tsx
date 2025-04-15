@@ -42,6 +42,7 @@ export default function Home() {
   }, [isMuted]);
 
   useEffect(() => {
+    let debounceTimer: number;
     const handleStart = () => {
       // 1) scroll back to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -59,8 +60,11 @@ export default function Home() {
     startBtnRef.current?.addEventListener("click", handleStart);
 
     const handleScroll = () => {
-      clearTimeout((handleScroll as any).debounceTimer);
-      (handleScroll as any).debounceTimer = setTimeout(() => {
+      // 2) Clear the previous timer
+      clearTimeout(debounceTimer);
+  
+      // 3) Schedule a new one
+      debounceTimer = window.setTimeout(() => {
         if (videoRef.current) {
           const scrollY = window.scrollY;
           const sectionIndex = Math.floor(scrollY / window.innerHeight);
@@ -69,11 +73,10 @@ export default function Home() {
             videoRef.current.pause();
             videoRef.current.src = videos[safeIndex];
             videoRef.current.load();
-            videoRef.current.oncanplay = () => {
+            videoRef.current.oncanplay = () =>
               videoRef.current
                 ?.play()
                 .catch((err) => console.error("Video play error:", err));
-            };
             lastIndex = safeIndex;
           }
         }
@@ -100,7 +103,7 @@ export default function Home() {
     return () => {
       startBtnRef.current?.removeEventListener("click", handleStart);
       window.removeEventListener("scroll", handleScroll);
-      clearInterval(intervalId);
+      clearInterval(debounceTimer);
     };
   }, []);
 
