@@ -2,88 +2,79 @@
 
 import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
+import { useForm } from "@formspree/react";
+import { TrashIcon } from '@heroicons/react/24/outline'
+interface Guest {
+  name: string;
+}
 
 export default function Home() {
+  // Video & countdown refs/state
   const videoRef = useRef<HTMLVideoElement>(null);
   const startBtnRef = useRef<HTMLButtonElement>(null);
   const heartContainerRef = useRef<HTMLDivElement>(null);
   const [isStarted, setIsStarted] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const videos = ["/assets/background-video1.mp4"];
-  // let lastIndex = -1;
- // Countdown state
- const [timeLeft, setTimeLeft] = useState({
-  days: 0, hours: 0, minutes: 0, seconds: 0
-});
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
-  // Synchronize the video's mute state.
+  // Formspree form state
+  const [state, handleSubmit] = useForm("YOUR_FORMSPREE_FORM_ID");
+  const [guests, setGuests] = useState<Guest[]>([{ name: '' }]);
+  const [attendance, setAttendance] = useState<"accept" | "decline" | "">("");
+
+  // Redirect on success
+  if (state.succeeded) {
+    return (
+      <div className="min-h-screen bg-cream flex items-center justify-center p-4">
+        <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
+          <svg className="w-16 h-16 text-gold mx-auto mb-4" viewBox="0 0 24 24">
+            <path
+              d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+              fill="currentColor"
+            />
+          </svg>
+          <h2 className="text-2xl font-script text-gray-800 mb-2">Thank You!</h2>
+          <p className="text-gray-600 font-serif">
+            Your RSVP has been received. We can't wait to celebrate with you!
+          </p>
+        </div>
+      </div>
+    );
+  }
+  const removeGuest = (index: number) => {
+    setGuests((prev) => prev.filter((_, i) => i !== index))
+  }
+  // Countdown effect
   useEffect(() => {
     const target = new Date("2025-08-24T00:00:00");
     const tick = () => {
       const now = new Date();
       const diff = target.getTime() - now.getTime();
-      if (diff <= 0) {
-        clearInterval(id);
-        return;
-      }
+      if (diff <= 0) return clearInterval(id);
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
       setTimeLeft({ days, hours, minutes, seconds });
     };
-    if (videoRef.current) {
-      videoRef.current.muted = isMuted;
-    }
+    if (videoRef.current) videoRef.current.muted = isMuted;
     tick();
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-   
   }, [isMuted]);
 
+  // Video start, hearts effect
   useEffect(() => {
-    // let debounceTimer: number;
     const handleStart = () => {
-      // 1) scroll back to top
       window.scrollTo({ top: 0, behavior: 'smooth' });
-  
-      // 2) reveal content & play video
       setIsStarted(true);
       if (videoRef.current) {
         videoRef.current.src = videos[0];
-        videoRef.current
-          .play()
-          .catch((err) => console.error("Video play failed:", err));
+        videoRef.current.play().catch(console.error);
       }
     };
-
     startBtnRef.current?.addEventListener("click", handleStart);
-
-    // const handleScroll = () => {
-    //   // 2) Clear the previous timer
-    //   clearTimeout(debounceTimer);
-  
-    //   // 3) Schedule a new one
-    //   debounceTimer = window.setTimeout(() => {
-    //     if (videoRef.current) {
-    //       const scrollY = window.scrollY;
-    //       const sectionIndex = Math.floor(scrollY / window.innerHeight);
-    //       const safeIndex = Math.min(sectionIndex, videos.length - 1);
-    //       if (safeIndex !== lastIndex) {
-    //         videoRef.current.pause();
-    //         videoRef.current.src = videos[safeIndex];
-    //         videoRef.current.load();
-    //         videoRef.current.oncanplay = () =>
-    //           videoRef.current
-    //             ?.play()
-    //             .catch((err) => console.error("Video play error:", err));
-    //         lastIndex = safeIndex;
-    //       }
-    //     }
-    //   }, 100);
-    // };
-
-    // window.addEventListener("scroll", handleScroll);
 
     const createHeart = () => {
       const heart = document.createElement("div");
@@ -92,23 +83,23 @@ export default function Home() {
       heart.style.left = `${Math.random() * 100}vw`;
       heart.style.animationDuration = `${3 + Math.random() * 3}s`;
       heart.style.fontSize = `${16 + Math.random() * 16}px`;
-      if (heartContainerRef.current) {
-        heartContainerRef.current.appendChild(heart);
-      }
+      heartContainerRef.current?.appendChild(heart);
       setTimeout(() => heart.remove(), 6000);
     };
-
     const intervalId = setInterval(createHeart, 300);
 
     return () => {
       startBtnRef.current?.removeEventListener("click", handleStart);
-      // window.removeEventListener("scroll", handleScroll);
       clearInterval(intervalId);
     };
   }, []);
 
-  const toggleMute = () => {
-    setIsMuted((prev) => !prev);
+  const toggleMute = () => setIsMuted(prev => !prev);
+  const addGuest = () => setGuests([...guests, { name: '' }]);
+  const updateGuestName = (index: number, name: string) => {
+    const updated = [...guests];
+    updated[index].name = name;
+    setGuests(updated);
   };
 
   return (
@@ -123,7 +114,7 @@ export default function Home() {
         />
       </Head>
 
-      {/* Video Background Container */}
+      
       <div id="background-container">
         <video
           autoPlay
@@ -352,58 +343,113 @@ export default function Home() {
       </div>
       <p className="account-code">Acc#23974923749</p>
      </section>
-        {/* <section className="card location-card animated-section">
-          <h2>Location</h2>
-          <p>St. Mary’s Church, Beirut</p>
-          <div className="map-container">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3312.9892520004443!2d35.500377815161885!3d33.888628928623096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1521f3df7a33a00f%3A0xd6ebd171d1f1d7f4!2sSt.%20Mary%20Church!5e0!3m2!1sen!2slb!4v1715000000000"
-              width="100%"
-              height="300"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-            />
-          </div>
-          <a
-            className="map-button"
-            href="https://maps.google.com/?q=St.+Mary’s+Church,+Beirut"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open in Google Maps
-          </a>
-        </section> */}
 
-<section className="rsvp-section detail-section">
-          <h2>Be Our Guest</h2>
-          <p>
-            Please reply before <strong>July 02, 2025</strong>
-          </p>
-          <p>
-            <strong>Number of persons: 2</strong>
-          </p>
-          <div className="heart-button">
-            <label>
-              <input type="radio" name="attendance" value="accept" />
-              <span>💖 Joyfully Accept</span>
+     
+     <section className=" bg-cream py-16">
+  <div className="max-w-xl mx-auto px-4 detail-section">
+    {/* Title */}
+    <h2 className="font-script text-5xl text-center mb-2">Be Our Guest</h2>
+
+    {/* Reply‑by + persons */}
+    <p className="font-serif italic text-center mb-1">
+      Please reply before <strong>July 02, 2025</strong>
+    </p>
+    <p className="font-serif italic text-center mb-8">
+      Number of persons: 2
+    </p>
+
+    {/* Question */}
+    <p className="font-serif italic text-center mb-6">Are you attending?</p>
+
+    <form onSubmit={handleSubmit} className="space-y-8">
+      {/* Accept / Decline */}
+      <div className="flex justify-center gap-6">
+        {["accept", "decline"].map((opt) => {
+          const isAccept = opt === "accept";
+          const selected = attendance === opt;
+          return (
+            <label
+              key={opt}
+              className={`flex items-center gap-2 cursor-pointer border-2 rounded-lg px-6 py-3 transition ${
+                selected
+                  ? "bg-black text-white border-black"
+                  : "bg-white text-black border-black hover:bg-black hover:text-white"
+              }`}
+            >
+              <input
+                type="radio"
+                name="attendance"
+                value={opt}
+                checked={attendance === opt}
+                onChange={() => setAttendance(opt as "accept" | "decline")}
+                className="sr-only"
+                required={isAccept}
+              />
+              <span className="text-xl">
+                {selected ? "♥" : "♡"}
+              </span>
+              <span>
+                {isAccept ? "Joyfully Accept" : "Regretfully Decline"}
+              </span>
             </label>
-            <label>
-              <input type="radio" name="attendance" value="decline" />
-              <span>💔 Respectfully Decline</span>
-            </label>
-          </div>
-          <div className="attending-names">
-            <label htmlFor="guest-name">Names of the people attending:</label>
-            <input type="text" id="guest-name" placeholder="Enter name..." />
-            <button type="button" className="add-person-btn">
-              Add Person
-            </button>
-          </div>
-          <button type="submit" className="submit-btn">
-            Submit
-          </button>
-        </section>
+          );
+        })}
+      </div>
+
+      {/* Names Inputs */}
+      <div className="space-y-4">
+  {guests.map((g, i) => (
+    <div
+      key={i}
+      className="flex items-center justify-center w-1/2 mx-auto space-x-2"
+    >
+      <input
+        type="text"
+        name={`guest-${i + 1}`}
+        value={g.name}
+        onChange={(e) => updateGuestName(i, e.target.value)}
+        placeholder={i === 0 ? 'Your Name' : `Guest ${i + 1} Name`}
+        className="flex-1 border-2 border-black rounded-md p-2 placeholder-black/60 focus:outline-none focus:border-black"
+        required
+      />
+      {i > 0 && (
+        <button
+          type="button"
+          onClick={() => removeGuest(i)}
+          className="p-2 rounded hover:bg-red-100 transition"
+        >
+          <TrashIcon className="h-5 w-5 text-gray-600 hover:text-red-600" />
+        </button>
+      )}
+    </div>
+  ))}
+</div>
+
+      {/* Add Person */}
+      <div className="text-center">
+        <button
+          type="button"
+          onClick={addGuest}
+          className="inline-flex items-center gap-2 border-2 border-black rounded-md px-4 py-2 hover:bg-black hover:text-white transition"
+        >
+          + Add Person
+        </button>
+      </div>
+
+      {/* Submit */}
+      <div className="text-center w-1/2 mx-auto space-y-4">
+
+      <button 
+        type="submit"
+        disabled={state.submitting}
+        className="w-full border-2 border-black rounded-md py-3 text-center hover:bg-black hover:text-white transition disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        {state.submitting ? "Sending…" : "Submit"}
+      </button>
+      </div>
+    </form>
+  </div>
+</section>
 
         <footer className="animated-section">
           <p>Made with love 💕 by the couple</p>
