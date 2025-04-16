@@ -444,7 +444,7 @@ if (submitted) {
   {guests.map((g, i) => (
     <div
       key={i}
-      className="flex items-center justify-center w-2/3 mx-auto gap-3"
+      className="flex items-center justify-center w-3/4 mx-auto gap-3"
     >
       <input
         type="text"
@@ -478,13 +478,13 @@ if (submitted) {
 
       {/* Add Person */}
       <div className="text-center">
-        <button
-          type="button"
-          onClick={addGuest}
-          className="inline-flex items-center gap-2 border-2 border-black rounded-md px-4 py-2 hover:bg-black hover:text-white transition"
-        >
-          + Add Person
-        </button>
+      <button
+  type="button"
+  onClick={addGuest}
+  className="inline-flex w-[100px] h-[25px] text-center items-center gap-2 border-2 border-black text-black rounded-md px-4 py-2 bg-white hover:bg-black hover:text-white transition"
+>
+    + Add Person
+</button>
       </div>
       <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
       <div className="text-center">
@@ -494,17 +494,17 @@ if (submitted) {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Your Email (optional)"
-        className="w-2/3 h-[40px] border-2 border-black p-4 text-lg placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-gold bg-white shadow-md"
+        className="w-3/4 h-[40px] border-2 border-black p-4 text-lg placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-gold bg-white shadow-md"
         />
       </div>    
 
 <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
       {/* Submit */}
-      <div className="text-center w-2/3 mx-auto space-y-4">
+      <div className="text-center w-3/4 mx-auto space-y-4">
       <button 
   type="submit"
   disabled={loading}
-  className={`w-full h-[40px] border-2 border-black py-4 text-lg font-serif bg-white hover:bg-black hover:text-white transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed ${
+  className={`w-full h-[50px] border-2 border-black bg-white text-black text-lg font-serif hover:bg-black hover:text-white transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-black ${
     loading ? 'bg-gray-200 cursor-wait' : ''
   }`}
 >
