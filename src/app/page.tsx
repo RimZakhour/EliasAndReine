@@ -531,7 +531,7 @@ if (submitted) {
 
         <footer className="animated-section">
           <p>Made with love 💕 by the couple</p>
-          <div className="bg-white border-2 border-dashed border-pink-300 rounded-xl shadow-md p-6 text-center w-2/3 mx-auto">
+{/*           <div className="bg-white border-2 border-dashed border-pink-300 rounded-xl shadow-md p-6 text-center w-2/3 mx-auto">
   <h3 className="text-xl font-script text-pink-700 mb-4">💕 Wedding Trivia 💕</h3>
   <p className="font-serif text-black mb-5">What flower symbolizes eternal love?</p>
   <div className="flex  justify-between w-[300px]">
@@ -545,7 +545,7 @@ if (submitted) {
       </button>
     ))}
   </div>
-</div>
+</div> */}
         </footer>
         
       </div>
