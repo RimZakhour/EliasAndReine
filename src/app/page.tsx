@@ -82,12 +82,6 @@ export default function Home() {
   e.preventDefault();
   setLoading(true); // Start loading
 
-  const payload = {
-    attendance,
-    guests,
-    email,
-  };
-
   try {
     const res = await fetch("https://script.google.com/macros/s/AKfycbzbrBYxR-zGVB00dbNiflJzFi0dvI5qlpxJ8TuZj7g/dev", {
       method: "POST",
