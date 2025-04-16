@@ -153,6 +153,9 @@ if (submitted) {
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&display=swap"
           rel="stylesheet"
         />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
       </Head>
 
       
@@ -481,9 +484,11 @@ if (submitted) {
       <button
   type="button"
   onClick={addGuest}
-  className="inline-flex items-center justify-center gap-2 w-[140px] h-[50px] bg-white border-2 border-black text-black text-sm font-medium hover:bg-black hover:text-white transition focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 shadow-md">
-    + Add Person
+  className="inline-flex items-center justify-center w-[140px] h-[50px] gap-2 border-2 border-black bg-white text-black font-medium text-sm hover:bg-black hover:text-white active:bg-black active:text-white focus:bg-black focus:text-white focus:outline-none focus:ring-2 focus:ring-black shadow-md transition"
+>
+  + Add Person
 </button>
+
       </div>
       <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
       <div className="text-center">
@@ -500,15 +505,16 @@ if (submitted) {
 <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
       {/* Submit */}
       <div className="text-center w-3/4 mx-auto space-y-4">
-      <button 
+      <button
   type="submit"
   disabled={loading}
-  className={`w-full h-[50px] bg-white border-2 border-black text-black text-lg font-serif hover:bg-black hover:text-white transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 ${
+  className={`w-full h-[50px] border-2 border-black bg-white text-black text-lg font-serif hover:bg-black hover:text-white active:bg-black active:text-white focus:bg-black focus:text-white focus:outline-none focus:ring-2 focus:ring-black shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed ${
     loading ? 'bg-gray-200 cursor-wait' : ''
   }`}
 >
   {loading ? "Sending…" : "Submit RSVP"}
 </button>
+
 </div>
 
     </form>
