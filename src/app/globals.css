@@ -11,7 +11,6 @@
   box-sizing: border-box;
 }
 
-
 html,
 body {
   height: 100%;
@@ -618,3 +617,13 @@ select:-webkit-autofill:focus {
   -webkit-text-fill-color: black !important;
   transition: background-color 5000s ease-in-out 0s;
 }
+button,
+input,
+select,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+}
+
