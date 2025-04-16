@@ -442,12 +442,11 @@ if (submitted) {
       </div>
     
       <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
-
-      <div className="space-y-4">
+      <div className="flex flex-col items-center space-y-4">
   {guests.map((g, i) => (
     <div
       key={i}
-      className="flex items-center justify-center w-3/4 mx-auto gap-3"
+      className="flex items-center justify-center w-3/4 gap-3"
     >
       <input
         type="text"
@@ -455,7 +454,7 @@ if (submitted) {
         value={g.name}
         onChange={(e) => updateGuestName(i, e.target.value)}
         placeholder={i === 0 ? "Your Name" : `Guest ${i + 1} Name`}
-        className="w-full h-[40px] border-2 border-black px-5 text-lg placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold bg-white shadow-md"
+        className="w-full h-[50px] border-2 border-black px-5 text-lg placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold bg-white shadow-md"
         required
       />
       {i > 0 && (
@@ -464,17 +463,26 @@ if (submitted) {
           onClick={() => removeGuest(i)}
           className="p-2 hover:bg-red-100 transition"
         >
-<svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.99997 8H6.5M6.5 8V18C6.5 19.1046 7.39543 20 8.5 20H15.5C16.6046 20 17.5 19.1046 17.5 18V8M6.5 8H17.5M17.5 8H19M9 5H15M9.99997 11.5V16.5M14 11.5V16.5" stroke="#464455" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <svg
+            width="20px"
+            height="20px"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4.99997 8H6.5M6.5 8V18C6.5 19.1046 7.39543 20 8.5 20H15.5C16.6046 20 17.5 19.1046 17.5 18V8M6.5 8H17.5M17.5 8H19M9 5H15M9.99997 11.5V16.5M14 11.5V16.5"
+              stroke="#464455"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
         </button>
       )}
-      
     </div>
-    
-    
   ))}
-  
-  
 </div>
+
 
 <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
 
@@ -484,7 +492,7 @@ if (submitted) {
       <button
   type="button"
   onClick={addGuest}
-  className="inline-flex items-center justify-center w-[140px] h-[50px] gap-2 border-2 border-black bg-white text-black font-medium text-sm hover:bg-black hover:text-white active:bg-black active:text-white focus:bg-black focus:text-white focus:outline-none focus:ring-2 focus:ring-black shadow-md transition"
+  className="w-3/4 h-[40px] border-2 border-black p-4 text-lg placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-gold bg-white shadow-md"
 >
   + Add Person
 </button>
@@ -508,7 +516,7 @@ if (submitted) {
       <button
   type="submit"
   disabled={loading}
-  className={`w-full h-[50px] border-2 border-black bg-white text-black text-lg font-serif hover:bg-black hover:text-white active:bg-black active:text-white focus:bg-black focus:text-white focus:outline-none focus:ring-2 focus:ring-black shadow-lg transition disabled:opacity-50 disabled:cursor-not-allowed ${
+  className={`w-full h-[50px] border-2 border-black bg-black text-black text-lg font-serif ${
     loading ? 'bg-gray-200 cursor-wait' : ''
   }`}
 >
