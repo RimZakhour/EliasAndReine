@@ -404,6 +404,7 @@ if (submitted) {
 
     <form onSubmit={handleSubmit} className="space-y-8">
       {/* Accept / Decline */}
+    
       <div className="flex justify-between w-[300px] mx-auto">
       {["accept", "decline"].map((opt) => {
           const isAccept = opt === "accept";
@@ -436,6 +437,7 @@ if (submitted) {
           );
         })}
       </div>
+    
       <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
 
       <div className="space-y-4">
@@ -450,23 +452,23 @@ if (submitted) {
         value={g.name}
         onChange={(e) => updateGuestName(i, e.target.value)}
         placeholder={i === 0 ? "Your Name" : `Guest ${i + 1} Name`}
-        className="w-full border-2 border-black rounded-full p-4 text-lg placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold bg-white shadow-md"
+        className="w-full h-[40px] border-2 border-black px-5 text-lg placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-gold focus:border-gold bg-white shadow-md"
         required
       />
       {i > 0 && (
         <button
           type="button"
           onClick={() => removeGuest(i)}
-          className="p-2 rounded-full hover:bg-red-100 transition"
+          className="p-2 hover:bg-red-100 transition"
         >
 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.99997 8H6.5M6.5 8V18C6.5 19.1046 7.39543 20 8.5 20H15.5C16.6046 20 17.5 19.1046 17.5 18V8M6.5 8H17.5M17.5 8H19M9 5H15M9.99997 11.5V16.5M14 11.5V16.5" stroke="#464455" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </button>
       )}
+      
     </div>
     
     
   ))}
-
   
   
 </div>
@@ -485,24 +487,29 @@ if (submitted) {
         </button>
       </div>
       <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
+      <div className="text-center">
       <input
-  type="email"
-  name="email"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-  placeholder="Your Email (optional)"
-  className="w-full border-2 border-black rounded-full p-4 text-lg placeholder-black/60"
-/>
+        type="email"
+        name="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Your Email (optional)"
+        className="w-2/3 h-[40px] border-2 border-black p-4 text-lg placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-gold bg-white shadow-md"
+        />
+      </div>    
+
 <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
       {/* Submit */}
       <div className="text-center w-2/3 mx-auto space-y-4">
-  <button 
-    type="submit"
-    disabled={loading}
-    className="w-full border-2 border-black rounded-full py-4 text-lg font-serif bg-white hover:bg-black hover:text-white transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-  >
-    {loading ? "Sending…" : "Submit RSVP"}
-  </button>
+      <button 
+  type="submit"
+  disabled={loading}
+  className={`w-full h-[40px] border-2 border-black py-4 text-lg font-serif bg-white hover:bg-black hover:text-white transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed ${
+    loading ? 'bg-gray-200 cursor-wait' : ''
+  }`}
+>
+  {loading ? "Sending…" : "Submit RSVP"}
+</button>
 </div>
 
     </form>
