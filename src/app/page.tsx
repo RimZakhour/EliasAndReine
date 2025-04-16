@@ -2,7 +2,7 @@
 
 import Head from "next/head";
 import { useEffect, useRef, useState } from "react";
-import { useForm } from "@formspree/react";
+
 
 interface Guest {
   name: string;
@@ -19,7 +19,9 @@ export default function Home() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   // Formspree form state
-  const [state, handleSubmit] = useForm("YOUR_FORMSPREE_FORM_ID");
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [email, setEmail] = useState('');
   const [guests, setGuests] = useState<Guest[]>([{ name: '' }]);
   const [attendance, setAttendance] = useState<"accept" | "decline" | "">("");
 
@@ -75,8 +77,46 @@ export default function Home() {
       clearInterval(intervalId);
     };
   }, []);
+
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setLoading(true); // Start loading
+
+  const payload = {
+    attendance,
+    guests,
+    email,
+  };
+
+  try {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbzbrBYxR-zGVB00dbNiflJzFi0dvI5qlpxJ8TuZj7g/dev", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        attendance,
+        guests,
+        email,
+      }),
+    });
+    
+
+    if (res.ok) {
+      setSubmitted(true);
+    } else {
+      alert("Failed to submit RSVP.");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Error submitting form.");
+  } finally {
+    setLoading(false); // End loading
+  }
+};
+  
 // Redirect on success
-if (state.succeeded) {
+if (submitted) {
   return (
     <div className="min-h-screen bg-cream flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
@@ -88,12 +128,13 @@ if (state.succeeded) {
         </svg>
         <h2 className="text-2xl font-script text-gray-800 mb-2">Thank You!</h2>
         <p className="text-gray-600 font-serif">
-          Your RSVP has been received. We can not wait to celebrate with you!
+          Your RSVP has been received. We can’t wait to celebrate with you!
         </p>
       </div>
     </div>
   );
 }
+
   const toggleMute = () => setIsMuted(prev => !prev);
   const addGuest = () => setGuests([...guests, { name: '' }]);
   const updateGuestName = (index: number, name: string) => {
@@ -418,13 +459,22 @@ if (state.succeeded) {
           onClick={() => removeGuest(i)}
           className="p-2 rounded-full hover:bg-red-100 transition"
         >
-<svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.99997 8H6.5M6.5 8V18C6.5 19.1046 7.39543 20 8.5 20H15.5C16.6046 20 17.5 19.1046 17.5 18V8M6.5 8H17.5M17.5 8H19M9 5H15M9.99997 11.5V16.5M14 11.5V16.5" stroke="#464455" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.99997 8H6.5M6.5 8V18C6.5 19.1046 7.39543 20 8.5 20H15.5C16.6046 20 17.5 19.1046 17.5 18V8M6.5 8H17.5M17.5 8H19M9 5H15M9.99997 11.5V16.5M14 11.5V16.5" stroke="#464455" strokeLinecap="round" strokeLinejoin="round"/></svg>
         </button>
       )}
     </div>
     
     
   ))}
+
+  <input
+  type="email"
+  name="email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  placeholder="Your Email (optional)"
+  className="w-full border-2 border-black rounded-full p-4 text-lg placeholder-black/60"
+/>
   
 </div>
 <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
@@ -447,10 +497,10 @@ if (state.succeeded) {
       <div className="text-center w-2/3 mx-auto space-y-4">
   <button 
     type="submit"
-    disabled={state.submitting}
+    disabled={loading}
     className="w-full border-2 border-black rounded-full py-4 text-lg font-serif bg-white hover:bg-black hover:text-white transition shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
   >
-    {state.submitting ? "Sending…" : "Submit RSVP"}
+    {loading ? "Sending…" : "Submit RSVP"}
   </button>
 </div>
 
