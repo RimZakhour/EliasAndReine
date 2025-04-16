@@ -79,23 +79,29 @@ export default function Home() {
   }, []);
 
  const handleSubmit = async (e: React.FormEvent) => {
+  console.log("Submitting RSVP", {
+    attendance,
+    guests,
+    email,
+  });
   e.preventDefault();
   setLoading(true); // Start loading
 
   try {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbzbrBYxR-zGVB00dbNiflJzFi0dvI5qlpxJ8TuZj7g/dev", {
+    const res = await fetch("/api/rsvp/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      
       body: JSON.stringify({
         attendance,
         guests,
         email,
       }),
     });
-    
-
+    // alert(email);
+  
     if (res.ok) {
       setSubmitted(true);
     } else {
@@ -461,16 +467,10 @@ if (submitted) {
     
   ))}
 
-  <input
-  type="email"
-  name="email"
-  value={email}
-  onChange={(e) => setEmail(e.target.value)}
-  placeholder="Your Email (optional)"
-  className="w-full border-2 border-black rounded-full p-4 text-lg placeholder-black/60"
-/>
+  
   
 </div>
+
 <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
 
 
@@ -485,8 +485,15 @@ if (submitted) {
         </button>
       </div>
       <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
-
-
+      <input
+  type="email"
+  name="email"
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  placeholder="Your Email (optional)"
+  className="w-full border-2 border-black rounded-full p-4 text-lg placeholder-black/60"
+/>
+<div className="flex justify-between w-[300px] mx-auto"><p></p></div>
       {/* Submit */}
       <div className="text-center w-2/3 mx-auto space-y-4">
   <button 
