@@ -15,7 +15,7 @@ export default function Home() {
   const heartContainerRef = useRef<HTMLDivElement>(null);
   const [isStarted, setIsStarted] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const videos = ["/assets/background-video1.mp4"];
+  const videos = ["/assets/background_video.mp4"];
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   // Formspree form state
