@@ -384,7 +384,10 @@ if (submitted) {
                      c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
           </svg>
         </button>
-        <p className="account-code">Acc#20738868-01</p>
+      
+      
+     </section>
+  <p className="account-code">Acc#20738868-01</p>
         <button
           className="copy-btn"
           onClick={() =>
@@ -405,9 +408,6 @@ if (submitted) {
         </button>
         <p className="account-code">+96103145404</p>
       </div>
-      
-     </section>
-
      
      <section className=" bg-cream py-16">
   <div className="max-w-xl mx-auto px-4 detail-section">
