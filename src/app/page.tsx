@@ -386,7 +386,12 @@ if (submitted) {
           </svg>
         </button>
        <p className="account-code">Acc#20738868-01</p>
-        
+      
+       
+      
+      </div>
+     <div className="account-block">
+         
       
         <button
           className="copy-btn"
@@ -406,11 +411,8 @@ if (submitted) {
                      c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
           </svg>
         </button>
-       
-      
-      </div>
-     
        <p className="account-code">+96103145404</p>
+       </div>
      </section>
  
      <section className=" bg-cream py-16">
