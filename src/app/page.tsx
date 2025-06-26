@@ -21,7 +21,7 @@ export default function Home() {
   // Formspree form state
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState('');
+  // const [email, setEmail] = useState('');
   const [guests, setGuests] = useState<Guest[]>([{ name: '' }]);
   const [attendance, setAttendance] = useState<"accept" | "decline" | "">("");
   const MAX_GUESTS = 2; // change this to 1, 2, or 3 to allow 2–4 total people
