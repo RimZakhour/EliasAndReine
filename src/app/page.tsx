@@ -134,7 +134,8 @@ export default function Home() {
 //     </div>
 //   );
 // }
-{submitted && (
+if (submitted) {
+  return (
   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
     <div className="bg-white rounded-xl p-8 max-w-sm w-full text-center shadow-lg">
       <svg className="w-12 h-12 text-gold mx-auto mb-4" viewBox="0 0 24 24">
@@ -153,7 +154,7 @@ export default function Home() {
       </button>
     </div>
   </div>
-)}
+);}
 
   const toggleMute = () => setIsMuted(prev => !prev);
   const addGuest = () => {
