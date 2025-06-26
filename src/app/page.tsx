@@ -589,9 +589,9 @@ if (submitted) {
   </div>
 </section>
 
-       <footer className="animated-section text-center space-y-4">
+       <footer className="animated-section text-center">
   {/* Couple Image */}
-  <div className="w-full flex justify-center">
+  <div className="w-full">
     <img
       src="/assets/couple.JPG" // <-- replace with your actual path
       alt="Couple"
