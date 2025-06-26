@@ -595,7 +595,7 @@ if (submitted) {
     <img
       src="/assets/couple.JPG" // <-- replace with your actual path
       alt="Couple"
-      className="rounded-xl shadow-md w-[250px] h-auto object-cover"
+      className="rounded-xl shadow-md w-full h-auto object-cover"
     />
   </div>
 
