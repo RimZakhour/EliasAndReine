@@ -369,7 +369,7 @@ if (submitted) {
         <button
           className="copy-btn"
           onClick={() =>
-            navigator.clipboard.writeText("Acc#23974923749")
+            navigator.clipboard.writeText("Acc#20738868-01")
           }
           aria-label="Copy account number"
         >
@@ -384,8 +384,28 @@ if (submitted) {
                      c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
           </svg>
         </button>
+        <p className="account-code">Acc#20738868-01</p>
+        <button
+          className="copy-btn"
+          onClick={() =>
+            navigator.clipboard.writeText("+96103145404")
+          }
+          aria-label="Copy account number"
+        >
+          {/* simple copy icon */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="#3c2f2f"
+          >
+            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14
+                     c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7
+                     c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+          </svg>
+        </button>
+        <p className="account-code">+96103145404</p>
       </div>
-      <p className="account-code">Acc#23974923749</p>
+      
      </section>
 
      
