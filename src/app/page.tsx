@@ -24,7 +24,7 @@ export default function Home() {
   const [email, setEmail] = useState('');
   const [guests, setGuests] = useState<Guest[]>([{ name: '' }]);
   const [attendance, setAttendance] = useState<"accept" | "decline" | "">("");
-
+  const MAX_GUESTS = 2; // change this to 1, 2, or 3 to allow 2–4 total people
   
   const removeGuest = (index: number) => {
     setGuests((prev) => prev.filter((_, i) => i !== index))
@@ -116,27 +116,51 @@ export default function Home() {
 };
   
 // Redirect on success
-if (submitted) {
-  return (
-    <div className="min-h-screen bg-cream flex items-center justify-center p-4">
-      <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
-        <svg className="w-16 h-16 text-gold mx-auto mb-4" viewBox="0 0 24 24">
-          <path
-            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-            fill="currentColor"
-          />
-        </svg>
-        <h2 className="text-2xl font-script text-gray-800 mb-2">Thank You!</h2>
-        <p className="text-gray-600 font-serif">
-          Your RSVP has been received. We can’t wait to celebrate with you!
-        </p>
-      </div>
+// if (submitted) {
+//   return (
+//     <div className="min-h-screen bg-cream flex items-center justify-center p-4">
+//       <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
+//         <svg className="w-16 h-16 text-gold mx-auto mb-4" viewBox="0 0 24 24">
+//           <path
+//             d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+//             fill="currentColor"
+//           />
+//         </svg>
+//         <h2 className="text-2xl font-script text-gray-800 mb-2">Thank You!</h2>
+//         <p className="text-gray-600 font-serif">
+//           Your RSVP has been received. We can’t wait to celebrate with you!
+//         </p>
+//       </div>
+//     </div>
+//   );
+// }
+{submitted && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-white rounded-xl p-8 max-w-sm w-full text-center shadow-lg">
+      <svg className="w-12 h-12 text-gold mx-auto mb-4" viewBox="0 0 24 24">
+        <path
+          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+          fill="currentColor"
+        />
+      </svg>
+      <h2 className="text-2xl font-script mb-2">Thank You!</h2>
+      <p className="font-serif text-gray-700">Your RSVP has been received.</p>
+      <button
+        onClick={() => setSubmitted(false)}
+        className="mt-6 border border-black px-4 py-2 rounded-lg text-black hover:bg-black hover:text-white transition"
+      >
+        Close
+      </button>
     </div>
-  );
-}
+  </div>
+)}
 
   const toggleMute = () => setIsMuted(prev => !prev);
-  const addGuest = () => setGuests([...guests, { name: '' }]);
+  const addGuest = () => {
+  if (guests.length < MAX_GUESTS + 1) {
+    setGuests([...guests, { name: '' }]);
+  }
+};
   const updateGuestName = (index: number, name: string) => {
     const updated = [...guests];
     updated[index].name = name;
@@ -520,13 +544,16 @@ if (submitted) {
       <button
   type="button"
   onClick={addGuest}
-  className="w-3/4 h-[40px] border-2 border-black p-4 text-lg placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-gold bg-white shadow-md"
+  disabled={guests.length >= MAX_GUESTS + 1}
+  className={`w-3/4 h-[40px] border-2 border-black p-4 text-lg focus:outline-none focus:ring-2 focus:ring-gold bg-white shadow-md ${
+    guests.length >= MAX_GUESTS + 1 ? "opacity-50 cursor-not-allowed" : ""
+  }`}
 >
   + Add Person
 </button>
 
       </div>
-      <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
+{/*       <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
       <div className="text-center">
       <input
         type="email"
@@ -536,7 +563,7 @@ if (submitted) {
         placeholder="Your Email (optional)"
         className="w-3/4 h-[40px] border-2 border-black p-4 text-lg placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-gold bg-white shadow-md"
         />
-      </div>    
+      </div>     */}
 
 <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
       {/* Submit */}
