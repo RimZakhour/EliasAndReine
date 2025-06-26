@@ -101,7 +101,8 @@ export default function Home() {
     // alert(email);
   
     if (res.ok) {
-      setSubmitted(true);
+       setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 3000); 
     } else {
       alert("Failed to submit RSVP.");
     }
@@ -113,37 +114,13 @@ export default function Home() {
   }
 };
   
-if (submitted) {
-  return (
-  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div className="bg-white rounded-xl p-8 max-w-sm w-full text-center shadow-lg">
-      <svg className="w-12 h-12 text-gold mx-auto mb-4" viewBox="0 0 24 24">
-        <path
-          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-          fill="currentColor"
-        />
-      </svg>
-      <h2 className="text-2xl font-script mb-2">Thank You!</h2>
-      <p className="font-serif text-gray-700">Your RSVP has been received.</p>
-      <button
-        onClick={() => setSubmitted(false)}
-        className="mt-6 border border-black px-4 py-2 rounded-lg text-black hover:bg-black hover:text-white transition"
-      >
-        Close
-      </button>
-    </div>
-  </div>
-);}
-//    {submitted && (
+// if (submitted) {
+//   return (
 //   <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
 //     <div className="bg-white rounded-xl p-8 max-w-sm w-full text-center shadow-lg">
 //       <svg className="w-12 h-12 text-gold mx-auto mb-4" viewBox="0 0 24 24">
 //         <path
-//           d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
-//              2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 
-//              2.09C13.09 3.81 14.76 3 16.5 3 
-//              19.58 3 22 5.42 22 8.5c0 3.78-3.4 
-//              6.86-8.55 11.54L12 21.35z"
+//           d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
 //           fill="currentColor"
 //         />
 //       </svg>
@@ -157,8 +134,8 @@ if (submitted) {
 //       </button>
 //     </div>
 //   </div>
-// )}
-
+// );}
+ 
  const toggleMute = () => setIsMuted(prev => !prev);
  const addGuest = () => {
   if (guests.length < MAX_GUESTS + 1) {
@@ -598,6 +575,30 @@ if (submitted) {
       className="rounded-xl shadow-md w-full h-auto object-cover"
     />
   </div>
+  {submitted && (
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-white rounded-xl p-8 max-w-sm w-full text-center shadow-lg">
+      <svg className="w-12 h-12 text-gold mx-auto mb-4" viewBox="0 0 24 24">
+        <path
+          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+             2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 
+             2.09C13.09 3.81 14.76 3 16.5 3 
+             19.58 3 22 5.42 22 8.5c0 3.78-3.4 
+             6.86-8.55 11.54L12 21.35z"
+          fill="currentColor"
+        />
+      </svg>
+      <h2 className="text-2xl font-script mb-2">Thank You!</h2>
+      <p className="font-serif text-gray-700">Your RSVP has been received.</p>
+      <button
+        onClick={() => setSubmitted(false)}
+        className="mt-6 border border-black px-4 py-2 rounded-lg text-black hover:bg-black hover:text-white transition"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+)}
 
   {/* Footer Text */}
   <p>Made with love 💕 by the couple</p>
