@@ -593,7 +593,7 @@ if (submitted) {
   {/* Couple Image */}
   <div className="w-full flex justify-center">
     <img
-      src="/assets/couple.jpg" // <-- replace with your actual path
+      src="/assets/couple.JPG" // <-- replace with your actual path
       alt="Couple"
       className="rounded-xl shadow-md w-[250px] h-auto object-cover"
     />
