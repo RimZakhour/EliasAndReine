@@ -179,13 +179,13 @@ export default function Home() {
         </video>
       </div>
  {submitted && (
-<div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 animate-fade-in">
-  <div className="relative w-[300px] h-[300px] flex items-center justify-center">
-      {/* Big white heart shape as background */}
+  <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 animate-fade-in">
+    <div className="relative w-[300px] h-[300px] flex items-center justify-center">
+      {/* Large white heart background */}
       <svg
         viewBox="0 0 24 24"
-        className="absolute inset-0 w-full h-full text-white"
-        fill="currentColor"
+        className="absolute inset-0 w-full h-full"
+        fill="white"
       >
         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
                  2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 
@@ -196,7 +196,7 @@ export default function Home() {
 
       {/* Text inside the heart */}
       <div className="z-10 text-center px-4">
-        <h2 className="text-2xl font-script text-black mb-1">Thank You!</h2>
+        <h2 className="text-2xl font-script text-black mb-2">Thank You!</h2>
         <p className="font-serif text-black">Your RSVP has been received.</p>
         <button
           onClick={() => setSubmitted(false)}
@@ -208,6 +208,7 @@ export default function Home() {
     </div>
   </div>
 )}
+
 
       {/* Landing Overlay */}
       {!isStarted && (
