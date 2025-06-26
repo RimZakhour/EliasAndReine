@@ -178,7 +178,18 @@ export default function Home() {
           <source src="/assets/background-video.mp4" type="video/mp4" />
         </video>
       </div>
+
+
+      {/* Landing Overlay */}
+      {!isStarted && (
+        <div id="landing-overlay">
+          <button id="start-btn" ref={startBtnRef}>
+            Start
+          </button>
+        </div>
+      )}
  {submitted && (
+      <div id="landing-overlay">
   <div className="fixed inset-0 flex items-center justify-center bg-white/100 z-50 animate-fade-in">
     <div className="relative w-[300px] h-[300px] flex items-center justify-center">
       {/* Large white heart background */}
@@ -208,17 +219,8 @@ export default function Home() {
       </div>
     </div>
   </div>
-)}
-
-
-      {/* Landing Overlay */}
-      {!isStarted && (
-        <div id="landing-overlay">
-          <button id="start-btn" ref={startBtnRef}>
-            Start
-          </button>
         </div>
-      )}
+)}
 
       {/* Mute Toggle Button */}
       <button id="mute-toggle" onClick={toggleMute}>
