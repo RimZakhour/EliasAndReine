@@ -367,6 +367,10 @@ if (submitted) {
       <div className="account-block">
         <span className="account-label">Wish Account</span>
        
+       
+      
+      </div>
+       <div className="account-block">
         <button
           className="copy-btn"
           onClick={() =>
@@ -387,9 +391,7 @@ if (submitted) {
         </button>
        <p className="account-code">Acc#20738868-01</p>
       
-       
-      
-      </div>
+       </div>
      <div className="account-block">
          
       
