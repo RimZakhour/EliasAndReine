@@ -179,7 +179,7 @@ export default function Home() {
         </video>
       </div>
  {submitted && (
-  <div className="fixed inset-0 flex items-center justify-center bg-white/50 z-50 animate-fade-in">
+  <div className="fixed inset-0 flex items-center justify-center bg-white animate-fade-in">
     <div className="absolute w-[300px] h-[300px] flex items-center justify-center">
       {/* Large white heart background */}
       <svg
