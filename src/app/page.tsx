@@ -82,7 +82,6 @@ export default function Home() {
   console.log("Submitting RSVP", {
     attendance,
     guests,
-    email,
   });
   e.preventDefault();
   setLoading(true); // Start loading
@@ -97,7 +96,6 @@ export default function Home() {
       body: JSON.stringify({
         attendance,
         guests,
-        email,
       }),
     });
     // alert(email);
