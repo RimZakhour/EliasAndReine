@@ -366,6 +366,7 @@ if (submitted) {
      {/* ─── WISH ACCOUNT ───────────────────────────────────────── */}
       <div className="account-block">
         <span className="account-label">Wish Account</span>
+        <div>
         <button
           className="copy-btn"
           onClick={() =>
@@ -385,6 +386,8 @@ if (submitted) {
           </svg>
         </button>
        <p className="account-code">Acc#20738868-01</p>
+          </div>
+        <div>
         <button
           className="copy-btn"
           onClick={() =>
@@ -404,6 +407,7 @@ if (submitted) {
           </svg>
         </button>
         <p className="account-code">+96103145404</p>
+          </div>
       </div>
      
       
