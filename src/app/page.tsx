@@ -179,8 +179,8 @@ export default function Home() {
         </video>
       </div>
  {submitted && (
-  <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50 animate-fade-in">
-    <div className="relative w-[300px] h-[300px] flex items-center justify-center">
+  <div className="fixed inset-0 flex items-center justify-center bg-white/50 z-50 animate-fade-in">
+    <div className="absolute w-[300px] h-[300px] flex items-center justify-center">
       {/* Large white heart background */}
       <svg
         viewBox="0 0 24 24"
@@ -196,11 +196,11 @@ export default function Home() {
 
       {/* Text inside the heart */}
       <div className="z-10 text-center px-4">
-        <h2 className="text-2xl font-script text-black mb-2">Thank You!</h2>
-        <p className="font-serif text-black">Your RSVP has been received.</p>
+        <h2 className="text-2xl font-script text-white mb-2">Thank You!</h2>
+        <p className="font-serif text-white">Your RSVP has been received.</p>
         <button
           onClick={() => setSubmitted(false)}
-          className="mt-4 border border-black px-4 py-2 rounded-lg text-black hover:bg-black hover:text-white transition"
+          className="mt-4 border border-white px-4 py-2 rounded-lg text-black hover:bg-black hover:text-white transition"
         >
           Close
         </button>
