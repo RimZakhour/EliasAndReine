@@ -24,7 +24,7 @@ export default function Home() {
   // const [email, setEmail] = useState('');
   const [guests, setGuests] = useState<Guest[]>([{ name: '' }]);
   const [attendance, setAttendance] = useState<"accept" | "decline" | "">("");
-  const MAX_GUESTS = 2; // change this to 1, 2, or 3 to allow 2–4 total people
+  const MAX_GUESTS = 1; // change this to 1, 2, or 3 to allow 2–4 total people
   
   const removeGuest = (index: number) => {
     setGuests((prev) => prev.filter((_, i) => i !== index))
