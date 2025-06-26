@@ -366,7 +366,7 @@ if (submitted) {
      {/* ─── WISH ACCOUNT ───────────────────────────────────────── */}
       <div className="account-block">
         <span className="account-label">Wish Account</span>
-        <div>
+       
         <button
           className="copy-btn"
           onClick={() =>
@@ -386,8 +386,8 @@ if (submitted) {
           </svg>
         </button>
        <p className="account-code">Acc#20738868-01</p>
-          </div>
-        <div>
+        
+      
         <button
           className="copy-btn"
           onClick={() =>
@@ -406,11 +406,11 @@ if (submitted) {
                      c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
           </svg>
         </button>
-        <p className="account-code">+96103145404</p>
-          </div>
+       
+      
       </div>
      
-      
+       <p className="account-code">+96103145404</p>
      </section>
  
      <section className=" bg-cream py-16">
