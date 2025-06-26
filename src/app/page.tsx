@@ -589,24 +589,19 @@ if (submitted) {
   </div>
 </section>
 
-        <footer className="animated-section">
-          <p>Made with love 💕 by the couple</p>
-{/*           <div className="bg-white border-2 border-dashed border-pink-300 rounded-xl shadow-md p-6 text-center w-2/3 mx-auto">
-  <h3 className="text-xl font-script text-pink-700 mb-4">💕 Wedding Trivia 💕</h3>
-  <p className="font-serif text-black mb-5">What flower symbolizes eternal love?</p>
-  <div className="flex  justify-between w-[300px]">
-    {["Rose", "Tulip", "Daisy", "Sunflower"].map((option) => (
-      <button
-        key={option}
-        onClick={() => alert(option === "Rose" ? "💖 Correct! 💖" : "Try again!")}
-        className="px-4 py-2 bg-pink-100 border border-pink-300 rounded-full hover:bg-pink-200 transition"
-      >
-        {option}
-      </button>
-    ))}
+       <footer className="animated-section text-center space-y-4">
+  {/* Couple Image */}
+  <div className="w-full flex justify-center">
+    <img
+      src="/assets/couple.jpg" // <-- replace with your actual path
+      alt="Couple"
+      className="rounded-xl shadow-md w-[250px] h-auto object-cover"
+    />
   </div>
-</div> */}
-        </footer>
+
+  {/* Footer Text */}
+  <p>Made with love 💕 by the couple</p>
+</footer>
         
       </div>
       
