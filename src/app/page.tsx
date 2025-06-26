@@ -24,7 +24,7 @@ export default function Home() {
   const [email, setEmail] = useState('');
   const [guests, setGuests] = useState<Guest[]>([{ name: '' }]);
   const [attendance, setAttendance] = useState<"accept" | "decline" | "">("");
-  const MAX_GUESTS = 2; // change this to 1, 2, or 3 to allow 2–4 total people
+  // const MAX_GUESTS = 2; // change this to 1, 2, or 3 to allow 2–4 total people
   
   const removeGuest = (index: number) => {
     setGuests((prev) => prev.filter((_, i) => i !== index))
@@ -157,11 +157,11 @@ export default function Home() {
 // );}
 
   const toggleMute = () => setIsMuted(prev => !prev);
-  const addGuest = () => {
-  if (guests.length < MAX_GUESTS + 1) {
-    setGuests([...guests, { name: '' }]);
-  }
-};
+ const addGuest = () => setGuests([...guests, { name: '' }]);  const updateGuestName = (index: number, name: string) => {
+    const updated = [...guests];
+    updated[index].name = name;
+    setGuests(updated);
+  };
   const updateGuestName = (index: number, name: string) => {
     const updated = [...guests];
     updated[index].name = name;
@@ -542,13 +542,10 @@ export default function Home() {
 
       {/* Add Person */}
       <div className="text-center">
-      <button
+       <button
   type="button"
   onClick={addGuest}
-  disabled={guests.length >= MAX_GUESTS + 1}
-  className={`w-3/4 h-[40px] border-2 border-black p-4 text-lg focus:outline-none focus:ring-2 focus:ring-gold bg-white shadow-md ${
-    guests.length >= MAX_GUESTS + 1 ? "opacity-50 cursor-not-allowed" : ""
-  }`}
+  className="w-3/4 h-[40px] border-2 border-black p-4 text-lg placeholder-black/60 focus:outline-none focus:ring-2 focus:ring-gold bg-white shadow-md"
 >
   + Add Person
 </button>
