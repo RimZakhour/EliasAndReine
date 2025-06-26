@@ -180,7 +180,7 @@ export default function Home() {
       </div>
  {submitted && (
   <div className="fixed inset-0 flex items-center justify-center bg-white/100 z-50 animate-fade-in">
-    <div className="absolute w-[300px] h-[300px] flex items-center justify-center">
+    <div className="relative w-[300px] h-[300px] flex items-center justify-center">
       {/* Large white heart background */}
       <svg
         viewBox="0 0 24 24"
