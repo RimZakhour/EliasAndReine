@@ -17,6 +17,24 @@
 .animate-fade-in {
   animation: fade-in 0.4s ease-out forwards;
 }
+@keyframes beat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.05);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  75% {
+    transform: scale(1.02);
+  }
+}
+
+.animate-beat {
+  animation: beat 1.5s ease-in-out infinite;
+}
 html,
 body {
   height: 100%;
