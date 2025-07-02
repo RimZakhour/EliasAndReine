@@ -516,16 +516,15 @@ export default function Home() {
       key={i}
       className="flex items-center justify-center w-3/4 gap-3"
     >
-      <input
-        type="text"
-        name={`guest-${i + 1}`}
-        value={g.name}
-        onChange={(e) => updateGuestName(i, e.target.value)}
-        placeholder={i === 0 ? "Your Name" : `Guest ${i + 1} Name`}
-                className="w-full h-[50px] border-2 !border-black px-5 text-lg placeholder-black/60 focus:border-gold bg-white shadow-md"
-
-        required
-      />
+   <input
+  type="text"
+  name={`guest-${i + 1}`}
+  value={g.name}
+  onChange={(e) => updateGuestName(i, e.target.value)}
+  placeholder={i === 0 ? "Your Name" : `Guest ${i + 1} Name`}
+  className="w-full h-[50px] border-2 !border-black focus:!border-black focus:ring-0 px-5 text-[16px] placeholder-black/60 bg-white shadow-md"
+  required
+/>
       {i > 0 && (
         <button
           type="button"
@@ -585,15 +584,16 @@ export default function Home() {
 <div className="flex justify-between w-[300px] mx-auto"><p></p></div>
       {/* Submit */}
       <div className="text-center w-3/4 mx-auto space-y-4">
-      <button
+     <button
   type="submit"
   disabled={loading}
-  className={`w-full h-[50px] border-2 border-black bg-black text-black text-lg font-serif ${
+  className={`w-full h-[50px] border-2 !border-black bg-black text-white text-[16px] font-serif ${
     loading ? 'bg-gray-200 cursor-wait' : ''
   }`}
 >
   {loading ? "Sending…" : "Submit RSVP"}
 </button>
+
 
 </div>
 
