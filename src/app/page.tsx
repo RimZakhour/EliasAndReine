@@ -522,7 +522,7 @@ export default function Home() {
         value={g.name}
         onChange={(e) => updateGuestName(i, e.target.value)}
         placeholder={i === 0 ? "Your Name" : `Guest ${i + 1} Name`}
-                className="w-full h-[50px] border-2 border-black;!important px-5 text-lg placeholder-black/60 bg-white shadow-md"
+                className="w-full h-[50px] border-2 !border-black px-5 text-lg placeholder-black/60 focus:border-gold bg-white shadow-md"
 
         required
       />
