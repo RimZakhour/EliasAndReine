@@ -562,7 +562,7 @@ export default function Home() {
   type="button"
   onClick={addGuest}
   disabled={guests.length >= MAX_GUESTS + 1}
-  className={`w-3/4 h-[40px] border-2 border-black p-4 text-lg focus:outline-none focus:ring-2 focus:ring-gold bg-white shadow-md ${
+  className={`w-3/4 h-[40px] border-2 !border-black p-4 text-lg focus:outline-none focus:ring-2 focus:ring-gold bg-white shadow-md text-white ${
     guests.length >= MAX_GUESTS + 1 ? "opacity-50 cursor-not-allowed" : ""
   }`}
 >
