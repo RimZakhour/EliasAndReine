@@ -16,7 +16,7 @@ export default function Home() {
   const [isStarted, setIsStarted] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const videos = ["/assets/background_video.mp4"];
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  // const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   // Formspree form state
   const [submitted, setSubmitted] = useState(false);
@@ -30,23 +30,23 @@ export default function Home() {
     setGuests((prev) => prev.filter((_, i) => i !== index))
   }
   // Countdown effect
-  useEffect(() => {
-    const target = new Date("2025-08-24T00:00:00");
-    const tick = () => {
-      const now = new Date();
-      const diff = target.getTime() - now.getTime();
-      if (diff <= 0) return clearInterval(id);
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-      setTimeLeft({ days, hours, minutes, seconds });
-    };
-    if (videoRef.current) videoRef.current.muted = isMuted;
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, [isMuted]);
+  // useEffect(() => {
+  //   const target = new Date("2025-08-24T00:00:00");
+  //   const tick = () => {
+  //     const now = new Date();
+  //     const diff = target.getTime() - now.getTime();
+  //     if (diff <= 0) return clearInterval(id);
+  //     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  //     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  //     const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  //     const seconds = Math.floor((diff / 1000) % 60);
+  //     setTimeLeft({ days, hours, minutes, seconds });
+  //   };
+  //   if (videoRef.current) videoRef.current.muted = isMuted;
+  //   tick();
+  //   const id = setInterval(tick, 1000);
+  //   return () => clearInterval(id);
+  // }, [isMuted]);
 
   // Video start, hearts effect
   useEffect(() => {
@@ -318,7 +318,7 @@ export default function Home() {
           </p>
           <p>Sunday, August 24th, 2025</p>
 
-          <div className="countdown">
+{/*           <div className="countdown">
             <div>
               <span>{timeLeft.days}</span>
               Days
@@ -335,7 +335,7 @@ export default function Home() {
               <span>{timeLeft.seconds}</span>
               Seconds
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
